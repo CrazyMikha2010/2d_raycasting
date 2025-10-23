@@ -102,6 +102,7 @@ def crossRS(r: Ray, S:Segment) -> Vector | None:
         return Vector(x, y)
     return None
 
+# ray_x, ray_y = map(int, input().split())
 n = int(input())
 segments = []
 for _ in range(n):
@@ -110,15 +111,17 @@ for _ in range(n):
 def get_angle(ray_x:int, ray_y:int, x:int, y:int) -> float:
     return degrees(atan2(y - ray_y, x - ray_x)) % 360
 
-def get_crosses(ray_x:int, ray_y:int):
+
+def get_crosses(ray_x:int, ray_y:int, light_angle:float=0, width:float=60) -> list[Vector]:
     angles = set()
+    angles.add((light_angle + width) % 360)
+    angles.add((light_angle - width) % 360)
     for segment in segments:
         for point in [segment.point1, segment.point2]:
             angle = get_angle(ray_x, ray_y, point.x, point.y)
             for i in [-0.1, 0, 0.1]:
                 angles.add(angle + i)
     angles = sorted(list(angles))
-
     ans = []
     for angle in angles:
         ray = Ray(ray_x, ray_y, angle)
@@ -133,7 +136,4 @@ def get_crosses(ray_x:int, ray_y:int):
         ans.append(curans)
     return ans
 
-# for v in ans:
-#     print(v)
-
-
+# get_crosses(ray_x, ray_y)
