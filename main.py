@@ -24,18 +24,20 @@ while running:
         
     SCREEN.fill('black')
     ans = get_crosses(ray_x, ray_y)
+    verticies = [(cross.x, cross.y) for cross in ans]
+    pg.draw.polygon(SCREEN, 'yellow', verticies)
     for v in ans:
         if v:
             pg.draw.line(SCREEN, 'red', (ray_x, ray_y), (v.x, v.y), 1)
     if flag:
         if event.key == pg.K_LEFT:
-            ray_x -= 5
+            ray_x = max(ray_x - 5, 5)
         if event.key == pg.K_RIGHT:
-            ray_x += 5
+            ray_x = min(ray_x + 5, SCREEN_SIZE[0] - 5)
         if event.key == pg.K_UP:
-            ray_y -= 5
+            ray_y = max(ray_y - 5, 5)
         if event.key == pg.K_DOWN:
-            ray_y += 5
+            ray_y = min(ray_y + 5, SCREEN_SIZE[1] - 5)
     for segment in segments:
         pg.draw.line(SCREEN, 'blue', (segment.point1.x, segment.point1.y), (segment.point2.x, segment.point2.y), 3)
     pg.draw.circle(SCREEN, 'red', (ray_x, ray_y), 5)
