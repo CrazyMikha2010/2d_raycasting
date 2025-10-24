@@ -48,9 +48,9 @@ while running:
     masked_image_surface.blit(image, (0, 0)) 
     masked_image_surface.blit(mask_surface, (0, 0), special_flags=pg.BLEND_RGBA_MULT)
     SCREEN.blit(masked_image_surface, (0, 0))
-    for v in ans:
-        if v:
-            pg.draw.line(SCREEN, 'red', (ray_x, ray_y), (v.x, v.y), 1)
+    # for v in ans:
+    #     if v:
+    #         pg.draw.line(SCREEN, 'red', (ray_x, ray_y), (v.x, v.y), 1)
     keys = pg.key.get_pressed() 
     if keys[pg.K_LEFT]:
         ray_x = max(ray_x - 5, 5)
