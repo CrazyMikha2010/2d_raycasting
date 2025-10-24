@@ -4,7 +4,7 @@ EPS = 1e-8
 class Vector:
     def __init__(self, x:float=None, y:float=None, inp:bool=False) -> None:
         if inp:
-            x, y = map(float, input().split())
+            x, y = map(float, field.readline().strip().split())
         self.x, self.y = x, y
 
     def __xor__(self, other: 'Vector') -> int:
@@ -102,10 +102,12 @@ def crossRS(r: Ray, S:Segment) -> Vector | None:
         return Vector(x, y)
     return None
 
-n = int(input())
-segments = []
-for _ in range(n):
-    segments.append(Segment(inp=True))
+with open("field.txt", "r") as field:
+    n = int(field.readline().strip())
+
+    segments = []
+    for _ in range(n):
+        segments.append(Segment(inp=True))
 
 def get_angle(ray_x:int, ray_y:int, x:int, y:int) -> float:
     return degrees(atan2(y - ray_y, x - ray_x)) % 360
