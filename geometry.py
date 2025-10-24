@@ -138,8 +138,7 @@ def get_crosses(ray_x:int, ray_y:int, light_angle:int=0, width:int=60):
             else:
                 ang2.append(ang)
         else:
-            diff = (ang - left) % 360
-            if diff <= width:
+            if left <= ang:
                 ang1.append(ang)
             else:
                 ang2.append(ang)
